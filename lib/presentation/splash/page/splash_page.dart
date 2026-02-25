@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:product_app/core/themes/colors/app_colors.dart';
-import 'package:product_app/core/themes/fonts/styles.dart';
-import 'package:product_app/generated/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:product_app/core/constatnts/routes_constants.dart';
 import 'package:product_app/presentation/splash/cubit/spalsh_cubit.dart';
 import 'package:product_app/presentation/splash/cubit/splash_state.dart';
+import 'package:product_app/presentation/splash/widgets/splash_page_view.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,6 +19,10 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     BlocProvider.of<SplashCubit>(context).splashLoaded();
+    Future.delayed(
+      const Duration(seconds: 4),
+      () => context.go(RoutesConstants.home),
+    );
   }
 
   @override
@@ -28,25 +32,7 @@ class _SplashPageState extends State<SplashPage> {
         if (kDebugMode) {
           print('Loaded');
         }
-        return Scaffold(
-          backgroundColor: AppColors.primaryColor,
-          body: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  S.of(context).welcomeTitle,
-                  style: AppFontStyles.typography(),
-                ),
-                Text(
-                  S.of(context).productAppTitle,
-                  style: AppFontStyles.typography(),
-                ),
-              ],
-            ),
-          ),
-        );
+        return const SplashPageView();
       } else {
         return Container();
       }
