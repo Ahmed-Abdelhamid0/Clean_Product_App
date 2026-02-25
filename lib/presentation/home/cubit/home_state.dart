@@ -1,6 +1,13 @@
-part of 'home_cubit.dart';
+abstract class HomeState {}
 
-@immutable
-sealed class HomeState {}
+class HomeInitial extends HomeState {}
 
-final class HomeInitial extends HomeState {}
+class HomeLoading extends HomeState {}
+
+class HomeLoaded extends HomeState {}
+
+class HomeFailure extends HomeState {
+  HomeFailure({required this.errMsg});
+
+  final String errMsg;
+}

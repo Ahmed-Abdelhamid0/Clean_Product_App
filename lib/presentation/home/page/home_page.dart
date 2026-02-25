@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:product_app/presentation/home/widgets/home_page_view.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) => const Scaffold(
-    body: SizedBox(
-      width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text('Home Page')],
-      ),
-    ),
-  );
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) => const HomePageView();
 }
